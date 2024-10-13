@@ -1,0 +1,10 @@
+{"time":"2024-10-13T11:16:48.298064863+05:00","level":"INFO","msg":"RegisterStudent handler called."}
+{"time":"2024-10-13T11:16:50.071805435+05:00","level":"INFO","msg":"Successfully saved to redis"}
+{"time":"2024-10-13T11:17:51.040691944+05:00","level":"INFO","msg":"RegisterStudent handler called."}
+{"time":"2024-10-13T11:17:52.552653754+05:00","level":"INFO","msg":"Successfully registered user"}
+{"time":"2024-10-13T11:18:03.671812065+05:00","level":"INFO","msg":"ForgotPassword is working"}
+{"time":"2024-10-13T11:18:03.671888399+05:00","level":"INFO","msg":"Getting user user by email"}
+{"time":"2024-10-13T11:18:05.140850702+05:00","level":"INFO","msg":"ForgotPassword succeeded"}
+{"time":"2024-10-13T11:18:35.660343584+05:00","level":"INFO","msg":"ResetPassword is working"}
+{"time":"2024-10-13T11:18:35.660717449+05:00","level":"INFO","msg":"Getting user user by email"}
+{"time":"2024-10-13T11:18:53.288977014+05:00","level":"INFO","msg":"Successfully logged in user"}

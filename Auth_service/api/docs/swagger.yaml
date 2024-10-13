@@ -1,0 +1,255 @@
+definitions:
+  models.AcceptCode:
+    properties:
+      code:
+        type: string
+      email:
+        type: string
+    type: object
+  models.Error:
+    properties:
+      message:
+        type: string
+    type: object
+  models.ForgotPasswordRequest:
+    properties:
+      email:
+        type: string
+    type: object
+  models.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  models.LoginResponse:
+    properties:
+      password:
+        type: string
+      role:
+        type: string
+      user_id:
+        type: string
+    required:
+    - password
+    - role
+    - user_id
+    type: object
+  models.Message:
+    properties:
+      message:
+        type: string
+    type: object
+  models.RegisterRequest1:
+    properties:
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+      phone_number:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - first_name
+    - last_name
+    - password
+    - phone_number
+    - username
+    type: object
+  models.RegisterResponse:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+      phone_number:
+        type: string
+      user_id:
+        type: string
+      username:
+        type: string
+    required:
+    - created_at
+    - email
+    - first_name
+    - last_name
+    - phone_number
+    - user_id
+    - username
+    type: object
+  models.ResetPassReq:
+    properties:
+      code:
+        type: string
+      email:
+        type: string
+      new_password:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Server for signUp, signIn, forgot password and reset password
+  title: Authenfication service
+  version: "1.0"
+paths:
+  /admin/register:
+    post:
+      description: Registers a new user`
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Registers user
+      tags:
+      - auth
+  /user/accept-code:
+    post:
+      description: it accepts code to register
+      parameters:
+      - description: enough
+        in: body
+        name: token
+        required: true
+        schema:
+          $ref: '#/definitions/models.AcceptCode'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.RegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Accept code to register
+      tags:
+      - auth
+  /user/forgot-password:
+    post:
+      description: it sends code to your email address
+      parameters:
+      - description: enough
+        in: body
+        name: token
+        required: true
+        schema:
+          $ref: '#/definitions/models.ForgotPasswordRequest'
+      responses:
+        "200":
+          description: message
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Forgot Password
+      tags:
+      - auth
+  /user/login:
+    post:
+      description: Login a user
+      parameters:
+      - description: User data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Login a user
+      tags:
+      - auth
+  /user/register:
+    post:
+      description: Registers a new user`
+      parameters:
+      - description: User data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterRequest1'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.RegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Registers user
+      tags:
+      - auth
+  /user/reset-password:
+    post:
+      description: it Reset your Password
+      parameters:
+      - description: enough
+        in: body
+        name: token
+        required: true
+        schema:
+          $ref: '#/definitions/models.ResetPassReq'
+      responses:
+        "200":
+          description: message
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Reset Password
+      tags:
+      - auth
+swagger: "2.0"
